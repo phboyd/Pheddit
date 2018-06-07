@@ -1,0 +1,36 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+
+        <variable
+            name="postViewModel"
+            type="info.philboyd.pheddit.viewmodel.ItemPostViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:id="@+id/item_submission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:onClick="@{postViewModel::onItemClick}">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{postViewModel.redditPost.getTitle()}"
+            style="@android:style/TextAppearance.DeviceDefault.Large"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{postViewModel.redditPost.getSubreddit_name_prefixed()}"
+            style="@android:style/TextAppearance.DeviceDefault.Small"/>
+    </LinearLayout>
+
+</layout>

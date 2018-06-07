@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="postViewModel"
+            type="info.philboyd.pheddit.viewmodel.PostsViewModel" />
+    </data>
+
+    <android.support.v4.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        >
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                >
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:visibility="@{postViewModel.progressBar}"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/list_post"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:scrollbars="vertical"
+                    app:visibility="@{postViewModel.postRecycler}"
+                    tools:listitem="@layout/item_post" />
+
+            </LinearLayout>
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:maxWidth="255dp"
+                        android:layout_height="wrap_content"
+                        android:lines="1"
+                        android:hint="@string/subreddit_search"
+                        android:text="@={postViewModel.subredditSearchString}"/>
+
+                    <ImageButton
+                        android:id="@+id/search"
+                        android:src="@drawable/ic_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:onClick="@{postViewModel::searchSubreddit}"/>
+                </android.support.v7.widget.Toolbar>
+
+            </android.support.design.widget.AppBarLayout>
+
+        </android.support.design.widget.CoordinatorLayout>
+
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            />
+
+    </android.support.v4.widget.DrawerLayout>
+
+
+</layout>
